@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مضمون للوحات المميزة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="controls-bar" aria-label="التحكم باللوحة">
+      <div class="input-group"><label for="lettersInput">الحروف</label><input id="lettersInput" type="text" maxlength="3" autocomplete="off"></div>
+      <div class="input-group"><label for="numbersInput">الأرقام</label><input id="numbersInput" type="text" maxlength="4" inputmode="numeric" autocomplete="off"></div>
+      <div class="input-group"><label for="plateType">نوع اللوحة</label><select id="plateType"><option value="خصوصي">خصوصي</option><option value="نقل خاص">نقل خاص</option><option value="لوحة طويلة - سيفين ونخلة اخضر">لوحة طويلة - سيفين ونخلة اخضر</option><option value="لوحة طويلة - سيفين ونخلة اسود">لوحة طويلة - سيفين ونخلة اسود</option><option value="لوحة طويلة - رؤية 2030">لوحة طويلة - رؤية 2030</option><option value="لوحة طويلة - مدائن صالح">لوحة طويلة - مدائن صالح</option><option value="لوحة طويلة - القدية">لوحة طويلة - القدية</option><option value="لوحة قصيرة - رياضية">لوحة قصيرة - رياضية</option></select></div>
+      <div class="auction-actions"><button id="soldButton" type="button">تم البيع</button><button id="timerButton" type="button">بدء المؤقت</button></div>
+      <div class="live-connection"><label for="streamerInput">يوزر صاحب البث</label><input id="streamerInput" type="text" placeholder="مثال: username" autocomplete="off"><button id="connectLiveButton" type="button">اتصال بالبث</button><small id="liveStatus" class="live-status">الاتصال غير نشط</small><small id="lastChatStatus" class="live-status">بانتظار رسائل الشات...</small></div>
+      <div class="allowed-users"><label for="allowedUserInput">المزايدون المسموحون</label><div class="user-entry"><input id="allowedUserInput" type="text" placeholder="يوزر تيك توك" autocomplete="off"><button id="addUserButton" type="button" aria-label="إضافة يوزر">+</button></div><ul id="allowedUsersList" class="allowed-users-list"></ul></div>
+    </section>
+    <section class="preview" aria-label="معاينة اللوحة">
+      <div class="logo-space" aria-label="مساحة مخصصة للشعار"></div>
+      <div class="plate-section"><div id="plate" class="saudi-plate-bg"><div class="plate-col numbers-col"><div id="topNumbers"></div><div id="bottomNumbers"></div></div><div class="plate-col center-divider"></div><div class="plate-col letters-col"><div id="arabicLetters"></div><div id="englishLetters"></div></div><div id="soldOverlay" class="sold-overlay" style="display:none"></div></div></div>
+      <div class="timer-strip" aria-label="الوقت المتبقي للمزاد"><div id="timerTrack" class="timer-track"><div id="timerFill" class="timer-fill"></div><strong id="timer">01:00</strong><span id="timerCaption" class="timer-caption">وقت المزاد • جاهز لبدء دقيقة</span></div></div>
+      <section class="bid-board" aria-label="المزايدات"><div class="bid-spotlight"><span class="bid-heading">الشاري / المزاد الأعلى 🔥</span><strong id="highestBidAmount">—</strong><span id="highestBidder">بانتظار المزايدات</span><small class="bid-hint">اكتب المبلغ فقط في الشات، مثل 10,000</small></div><div class="bid-list-wrap"><h2>أعلى 3 مزايدين</h2><ol id="bidList" class="bid-list"><li class="empty-bids">تظهر المزايدات هنا</li></ol></div></section>
+</section>
+  </main>
+  <script src="script.js"></script>
+  <script src="live-auction.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

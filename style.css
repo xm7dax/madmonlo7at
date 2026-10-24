@@ -1,0 +1,187 @@
+*{box-sizing:border-box;margin:0;font-family:"Amiri",serif;font-weight:700}
+    html,body{min-height:100%;}
+    body{min-height:100vh;background:radial-gradient(circle at 80% 15%,#ebe3d4 0,transparent 42%),#f7f4ef;color:#2d2b2a;display:flex;align-items:flex-start;justify-content:center;padding:20px 24px}
+    .container{width:min(1500px,100%);display:grid;grid-template-columns:205px minmax(0,1fr);direction:ltr;align-items:start;gap:36px;margin:0 auto}
+    .controls-bar{direction:rtl;background:#fff;border:1px solid #e0d8c8;border-radius:16px;padding:13px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 25px #0000000a}
+    .input-group{display:flex;flex-direction:column;gap:5px} label{color:#635c51;font-size:14px}
+    input,select{background:#f7f4ef;border:1px solid #dcd3c1;border-radius:10px;padding:7px 9px;color:#2d2b2a;font-size:14px;outline:none;width:100%} input:focus,select:focus{border-color:#a89a82}
+    .auction-actions{display:flex;gap:8px;margin-top:4px}.auction-actions button{flex:1;min-width:0}
+    button{border:0;border-radius:10px;padding:7px 11px;font-size:14px;cursor:pointer;color:#fff;transition:background .2s}
+    #soldButton{background:#dc2626}#soldButton:hover{background:#b91c1c}
+    .preview{direction:rtl;min-width:0;display:flex;flex-direction:column;align-items:center;gap:16px;transform:none}
+    .logo-space{height:100px;width:100%;flex:0 0 100px}
+    .plate-section{display:flex;justify-content:center;width:100%}
+    .saudi-plate-bg{width:min(570px,100%);height:145px;background-repeat:no-repeat;background-position:center;background-size:100% 100%;display:grid;grid-template-columns:44% 12% 44%;position:relative;border:3px solid #111;box-shadow:0 8px 20px #00000020;color:#000;direction:ltr;border-radius:10px;overflow:hidden;transition:all .3s ease}
+    .plate-col{display:flex;flex-direction:column;justify-content:space-around;align-items:center;text-align:center;padding:4px 0;height:100%}
+    #topNumbers,#bottomNumbers{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;height:50%;direction:ltr}
+    .num-box{display:inline-flex;justify-content:center;align-items:center;width:32px;font-size:43px;line-height:1;color:#000}
+    #arabicLetters,#englishLetters{display:flex;justify-content:center;align-items:center;gap:13px;width:100%;height:50%;direction:ltr}
+    .letter-box{display:inline-flex;justify-content:center;align-items:center;width:36px;font-size:38px;line-height:1;color:#000;position:relative}
+    .alif-letter{transform:translateY(8px)}.raised-letter{transform:translateY(-4px)}
+    .long-plate-style{height:125px;grid-template-columns:45% 10% 45%}.long-plate-style .num-box{font-size:37px;width:27px}.long-plate-style .letter-box{font-size:33px}
+    .sports-plate-style{width:min(420px,100%);height:90px;grid-template-columns:41% 18% 41%;border-width:2px}
+    .sports-plate-style #topNumbers,.sports-plate-style #arabicLetters{display:none}.sports-plate-style #bottomNumbers,.sports-plate-style #englishLetters{height:100%;gap:6px}.sports-plate-style .num-box,.sports-plate-style .letter-box{font-size:35px;width:25px}
+    .info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:78px;gap:12px;width:min(620px,100%);flex:0 0 auto}
+    .box{background:#fff;border:1px solid #e2dacd;padding:8px;border-radius:12px;text-align:center;box-shadow:0 4px 10px #00000008;min-width:0;height:78px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+    .box span{display:block;color:#7d7568;font-size:13px;margin-bottom:3px;line-height:1.15}.box strong{font-size:15px;color:#222;overflow-wrap:anywhere;line-height:1.15}#auctionStatusText{color:#10b981}
+    .sold-overlay{position:absolute;inset:0;z-index:10;background-position:center;background-repeat:no-repeat;background-size:40% auto;border-radius:8px}
+    @media(max-width:760px){body{padding:18px}.container{grid-template-columns:1fr;gap:24px;max-width:600px}.controls-bar{grid-row:2}.preview{grid-row:1;gap:14px;transform:none}.logo-space{height:76px;flex-basis:76px}.info-grid{grid-auto-rows:72px}.box{height:72px}.saudi-plate-bg{height:120px}.num-box{font-size:36px}.letter-box{font-size:32px}.info-grid{gap:7px}.box{padding:8px 5px}.box strong{font-size:14px}}
+    @media(max-width:400px){.saudi-plate-bg{height:96px}.num-box{font-size:29px;width:25px}.letter-box{font-size:27px;width:28px}#arabicLetters,#englishLetters{gap:7px}.controls-bar{padding:12px}.info-grid{grid-auto-rows:68px}.box{height:68px}.box span{font-size:11px}.box strong{font-size:13px}}
+
+
+
+
+
+.live-connection,.allowed-users{display:flex;flex-direction:column;gap:6px;border-top:1px solid #eee8dc;padding-top:10px}
+.live-connection button,.user-entry button{border:0;border-radius:8px;background:#514536;color:#fff;padding:6px 9px;font-size:13px;cursor:pointer}
+.live-status{font-size:12px;color:#827869;line-height:1.2}.live-status.connected{color:#10b981}.live-status.error{color:#dc2626}
+.user-entry{display:flex;gap:5px}.user-entry input{min-width:0}.user-entry button{font-size:18px;line-height:1;min-width:32px}
+.allowed-users-list{list-style:none;display:flex;flex-direction:column;gap:4px;max-height:115px;overflow:auto;padding:0}
+.allowed-users-list li{display:flex;align-items:center;justify-content:space-between;gap:5px;background:#f7f4ef;border-radius:7px;padding:4px 7px;font-size:12px;direction:ltr}
+.remove-user{border:0;background:transparent;color:#dc2626;font-size:16px;cursor:pointer;padding:0 3px}
+.bid-board{width:min(620px,100%);display:flex;flex-direction:column;gap:8px}
+.bid-spotlight{border:2px solid #bca77f;border-radius:15px;background:#fffaf0;text-align:center;padding:10px 16px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.bid-heading{font-size:16px;color:#8b7048}.bid-spotlight strong{font-family:Arial,sans-serif;font-size:34px;line-height:1.15;color:#222}.bid-spotlight>span:last-child{font-size:14px;color:#655746}
+.bid-list-wrap{border:1px solid #e2dacd;background:#fff;border-radius:12px;padding:7px 10px}.bid-list-wrap h2{text-align:center;font-size:14px;font-weight:700;margin-bottom:4px;color:#514536}
+.bid-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:4px}.bid-list li{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:7px;border:1px solid #e8dfcf;border-radius:8px;padding:4px 7px;font-size:13px}.bid-rank{color:#9c835c}.bid-user{direction:rtl;text-align:right}.bid-amount{font-family:Arial,sans-serif;direction:ltr;font-size:14px;color:#856b41}.bid-list .empty-bids{display:block;text-align:center;color:#8a8174;border:0}
+@media(max-width:760px){.allowed-users-list{max-height:95px}.bid-board{width:100%}.bid-spotlight{padding:8px}.bid-spotlight strong{font-size:29px}}
+
+.auction-actions #timerButton{background:#10b981}.auction-actions #timerButton:hover{background:#059669}
+
+
+.timer-strip{width:min(510px,100%);display:flex;flex-direction:column;align-items:stretch}
+.timer-track{height:70px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border:2px solid #83a99c;border-radius:13px;background:#f1f8f5;transition:background-color 1s linear,border-color 1s linear}
+.timer-fill{position:absolute;right:12px;bottom:5px;width:calc(100% - 24px);height:4px;border-radius:9px;background:#16865b;transition:width 1s linear,background-color 1s linear}
+#timer{position:relative;z-index:1;color:#285d4e;font-family:Arial,sans-serif;font-size:34px;font-weight:700;line-height:1.05;text-shadow:none}
+.timer-caption{position:relative;z-index:1;text-align:center;color:#555f59;font-size:11px;line-height:1.1;margin-top:2px}
+@media(max-width:760px){.timer-strip{width:min(510px,100%)}.timer-track{height:66px}#timer{font-size:30px}.timer-caption{font-size:10px}}
+
+
+
+
+.controls-bar{width:205px;max-width:100%;min-width:0;padding:10px;overflow:visible;align-self:start}
+.controls-bar>*{width:100%;max-width:100%;min-width:0}
+.controls-bar .input-group,.controls-bar .live-connection,.controls-bar .allowed-users,.controls-bar .auction-actions{width:100%;max-width:100%;min-width:0}
+.controls-bar input,.controls-bar select{width:100%;max-width:100%;min-width:0}
+.controls-bar .auction-actions button{padding:7px 5px;font-size:12px;line-height:1.15;white-space:normal;overflow-wrap:anywhere}
+.controls-bar .user-entry{width:100%;max-width:100%;min-width:0}
+.controls-bar .user-entry input{flex:1 1 0;width:0;min-width:0}
+.controls-bar .user-entry button{flex:0 0 32px;min-width:32px;padding:5px}
+.controls-bar .allowed-users-list{width:100%;max-width:100%;min-width:0}
+.controls-bar .allowed-users-list li{max-width:100%;min-width:0}
+.controls-bar .allowed-users-list li span{min-width:0;overflow-wrap:anywhere}
+.controls-bar label{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:760px){.controls-bar{width:205px;max-width:100%;margin-inline:auto}}
+
+.controls-bar,.controls-bar *{box-sizing:border-box;min-width:0;max-width:100%}
+.controls-bar .auction-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.controls-bar .auction-actions button{width:100%;padding-inline:3px;font-size:11px}
+.controls-bar .live-connection>button{width:100%;}
+.controls-bar .user-entry input{padding-inline:6px;font-size:13px}
+
+.bid-hint{font-size:11px;color:#827869;margin-top:3px}
+
+
+/* تعديلات المساحة والخلفية */
+body {
+  background-color: #f7f4ef;
+  background-image: linear-gradient(rgba(247,244,239,.12), rgba(247,244,239,.12)), url('images/13.jpg');
+  background-position: center 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.saudi-plate-bg { width: min(520px, 100%); height: 132px; }
+.long-plate-style { height: 114px; }
+.sports-plate-style { width: min(385px, 100%); height: 82px; }
+.timer-strip { width: min(460px, 100%); }
+.timer-track { height: 64px; }
+.bid-board { width: min(560px, 100%); gap: 7px; }
+.bid-spotlight { padding: 8px 13px; }
+.bid-spotlight strong { font-size: 30px; }
+.bid-list-wrap { padding: 6px 9px; }
+@media(max-width:760px) {
+  .saudi-plate-bg { height: 112px; }
+  .long-plate-style { height: 100px; }
+  .sports-plate-style { height: 78px; }
+  .timer-strip { width: min(460px, 100%); }
+  .timer-track { height: 60px; }
+  .bid-spotlight { padding: 7px; }
+  .bid-spotlight strong { font-size: 27px; }
+}
+
+/* مقاسات اللوحات متناسبة مع صور القوالب الأصلية */
+.saudi-plate-bg {
+  width: min(520px, 100%);
+  height: auto;
+  aspect-ratio: 1581 / 431;
+  container-type: inline-size;
+  border-width: clamp(2px, .65cqw, 3px);
+  border-radius: clamp(7px, 1.8cqw, 10px);
+  background-size: 100% 100%;
+}
+.num-box {
+  width: clamp(20px, 6.2cqw, 32px);
+  font-size: clamp(26px, 8.1cqw, 42px);
+}
+#topNumbers, #bottomNumbers { gap: clamp(4px, 1.5cqw, 8px); }
+.letter-box {
+  width: clamp(22px, 6.9cqw, 36px);
+  font-size: clamp(25px, 7.3cqw, 38px);
+}
+#arabicLetters, #englishLetters { gap: clamp(5px, 2.5cqw, 13px); }
+.long-plate-style {
+  width: min(520px, 100%);
+  height: auto;
+  aspect-ratio: 1272 / 255;
+  grid-template-columns: 45% 10% 45%;
+}
+.long-plate-style .num-box { width: clamp(20px, 5.6cqw, 29px); font-size: clamp(25px, 7.2cqw, 37px); }
+.long-plate-style .letter-box { width: clamp(21px, 5.8cqw, 30px); font-size: clamp(25px, 6.4cqw, 33px); }
+.sports-plate-style {
+  width: min(385px, 100%);
+  height: auto;
+  aspect-ratio: 1600 / 388;
+  grid-template-columns: 41% 18% 41%;
+  border-width: 2px;
+}
+.sports-plate-style .num-box, .sports-plate-style .letter-box {
+  width: clamp(20px, 6.5cqw, 26px);
+  font-size: clamp(27px, 9cqw, 35px);
+}
+.timer-strip { width: min(440px, 100%); }
+.timer-track { height: 60px; }
+.bid-board { width: min(520px, 100%); gap: 6px; }
+.bid-spotlight { padding: 7px 12px; }
+.bid-spotlight strong { font-size: 28px; }
+.bid-list-wrap { padding: 5px 8px; }
+@media(max-width:760px) {
+  .saudi-plate-bg, .long-plate-style, .sports-plate-style { height: auto; }
+  .timer-strip { width: min(440px, 100%); }
+  .timer-track { height: 58px; }
+  .bid-spotlight { padding: 7px; }
+  .bid-spotlight strong { font-size: 25px; }
+}
+
+/* ضبط محتوى شريط المؤقت */
+.timer-track {
+  height: 66px;
+  padding: 0 12px 8px;
+  gap: 0;
+}
+#timer {
+  font-size: 32px;
+  line-height: 1;
+  margin: 0;
+}
+.timer-caption {
+  font-size: 12px;
+  line-height: 1.15;
+  margin-top: 2px;
+}
+.timer-fill { bottom: 3px; height: 3px; }
+@media(max-width:760px) {
+  .timer-track { height: 62px; padding-bottom: 7px; }
+  #timer { font-size: 29px; }
+  .timer-caption { font-size: 10px; }
+}
