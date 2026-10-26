@@ -4,6 +4,13 @@ let auctionInterval = null;
 let liveSocket = null;
 let allowedUsers = [];
 const bidders = new Map();
+const displayNames = new Map();
+try {
+  const savedNames = JSON.parse(localStorage.getItem('allowedTikTokDisplayNames') || '{}');
+  if (savedNames && typeof savedNames === 'object' && !Array.isArray(savedNames)) {
+    for (const [user, name] of Object.entries(savedNames)) displayNames.set(user, String(name || ''));
+  }
+} catch { /* Ignore invalid cached display names. */ }
 
 try {
   allowedUsers = JSON.parse(localStorage.getItem('allowedTikTokUsers') || '[]');
@@ -66,7 +73,14 @@ function renderAllowedUsers() {
     const row = document.createElement('li');
     const label = document.createElement('span');
     const remove = document.createElement('button');
-    label.textContent = `@${user}`;
+    label.className = 'allowed-user-label';
+    const displayName = document.createElement('strong');
+    displayName.className = 'allowed-user-display-name';
+    displayName.textContent = displayNames.get(user) || user;
+    const username = document.createElement('small');
+    username.className = 'allowed-user-username';
+    username.textContent = `@${user}`;
+    label.append(displayName, username);
     remove.type = 'button';
     remove.className = 'remove-user';
     remove.textContent = '×';
@@ -79,6 +93,7 @@ function renderAllowedUsers() {
     list.append(row);
   });
   localStorage.setItem('allowedTikTokUsers', JSON.stringify(allowedUsers));
+  localStorage.setItem('allowedTikTokDisplayNames', JSON.stringify(Object.fromEntries(displayNames)));
 }
 
 function saveAllowedUsers() {
@@ -158,6 +173,12 @@ function parseBid(comment) {
 
 function processLiveComment(user, comment, displayName = '') {
   const username = String(user || '').toLowerCase().replace(/^@/, '');
+  const cleanDisplayName = String(displayName || '').trim();
+  if (username && cleanDisplayName && displayNames.get(username) !== cleanDisplayName) {
+    displayNames.set(username, cleanDisplayName);
+    localStorage.setItem('allowedTikTokDisplayNames', JSON.stringify(Object.fromEntries(displayNames)));
+    if (allowedUsers.includes(username)) renderAllowedUsers();
+  }
   const diagnostic = byId('lastChatStatus');
   diagnostic.textContent = `آخر تعليق: @${username || displayName || 'غير معروف'} — ${comment}`;
   diagnostic.title = diagnostic.textContent;
@@ -183,7 +204,7 @@ function processLiveComment(user, comment, displayName = '') {
     diagnostic.textContent += ` | المبلغ أقل من أعلى سومه ${currentHighest.toLocaleString('en-US')}`;
     return;
   }
-  bidders.set(username, { username, amount });
+  bidders.set(username, { username, displayName: cleanDisplayName || displayNames.get(username) || username, amount });
   diagnostic.textContent = `تم قبول ${amount.toLocaleString('en-US')} من @${username}`;
   renderBids();
 }
@@ -202,7 +223,7 @@ function renderBids() {
     return;
   }
   byId('highestBidAmount').textContent = sorted[0].amount.toLocaleString('en-US');
-  byId('highestBidder').textContent = `@${sorted[0].username}`;
+  byId('highestBidder').textContent = `${sorted[0].displayName || sorted[0].username} (@${sorted[0].username})`;
   sorted.forEach((bid, index) => {
     const row = document.createElement('li');
     const rank = document.createElement('span');
@@ -211,7 +232,13 @@ function renderBids() {
     rank.className = 'bid-rank';
     rank.textContent = String(index + 1);
     name.className = 'bid-user';
-    name.textContent = `@${bid.username}`;
+    const display = document.createElement('strong');
+    display.className = 'bid-display-name';
+    display.textContent = bid.displayName || displayNames.get(bid.username) || bid.username;
+    const username = document.createElement('small');
+    username.className = 'bid-username';
+    username.textContent = `@${bid.username}`;
+    name.append(display, username);
     amount.className = 'bid-amount';
     amount.textContent = bid.amount.toLocaleString('en-US');
     row.append(rank, name, amount);

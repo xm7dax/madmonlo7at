@@ -185,3 +185,12 @@ body {
   #timer { font-size: 29px; }
   .timer-caption { font-size: 10px; }
 }
+
+
+/* أسماء المزايدين: الاسم الظاهر فوق واليوزر بحجم أصغر تحته */
+.allowed-user-label{display:flex;flex-direction:column;gap:0;min-width:0;flex:1;text-align:right;direction:rtl;line-height:1.2}
+.allowed-user-display-name,.bid-display-name{font-size:13px;font-weight:700;color:#2d2b2a;overflow-wrap:anywhere}
+.allowed-user-username,.bid-username{font-size:10px;font-weight:400;color:#827869;direction:ltr;text-align:right;overflow-wrap:anywhere}
+.bid-user{display:flex;flex-direction:column;gap:1px;min-width:0;line-height:1.2}
+.bid-display-name{font-size:13px}
+.bid-username{font-size:10px}
